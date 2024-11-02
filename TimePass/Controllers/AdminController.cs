@@ -1,31 +1,26 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TimePass.Models;
 using TimePass.DBData;
- 
+using TimePass.Models;
+
 
 namespace TimePass.Controllers
 {
-    public class AdminController : Controller
-    {
-		IWebHostEnvironment webHostEnvironment ;
+	public class AdminController : Controller
+	{
+		IWebHostEnvironment webHostEnvironment;
 		TimePassContext context = new TimePassContext();
-		public AdminController (IWebHostEnvironment HC)
+		public AdminController(IWebHostEnvironment HC)
 		{
 			webHostEnvironment = HC;
 		}
-        public IActionResult Index()
-        {
-            return View();
-        }
+		public IActionResult Index()
+		{
+			return View();
+		}
 		[HttpPost]
 		public IActionResult Index(UserLogin Lg)
 		{
-
-
-
 			{
 				var status = context.Adminlogins.Where(m => m.UserName == Lg.Username && m.Password == Lg.Password).FirstOrDefault();
 				if (status == null)
@@ -60,16 +55,17 @@ namespace TimePass.Controllers
 		}
 		public IActionResult DashboardAdmin()
 		{
-            string key = "UserName";
-            var cookieValue = Request.Cookies[key];
-            if (cookieValue == null)
-            {
-                return RedirectToAction("Index", "Admin");
-            }
-            return View();
+			//Dashboard
+			string key = "UserName";
+			var cookieValue = Request.Cookies[key];
+			if (cookieValue == null)
+			{
+				return RedirectToAction("Index", "Admin");
+			}
+			return View();
 		}
 		[HttpGet]
-		public async Task<IActionResult> RegistrationList(  int id)
+		public async Task<IActionResult> RegistrationList(int id)
 		{
 			string key = "UserName";
 			var cookieValue = Request.Cookies[key];
@@ -78,15 +74,15 @@ namespace TimePass.Controllers
 				if (id != 0)
 				{
 
-					var RegData = await context.Registrations.FindAsync( id);
+					var RegData = await context.Registrations.FindAsync(id);
 
 					//	RegistrationList Rlist = new RegistrationList();
-					 
+
 
 					//List<RegistrationList> RegList = new List<RegistrationList>();
 					if (RegData != null)
 					{
-						 context.Registrations.Remove(RegData);
+						context.Registrations.Remove(RegData);
 						await context.SaveChangesAsync();
 						TempData["JavaScriptFunction"] = string.Format("Delete();");
 
@@ -96,7 +92,7 @@ namespace TimePass.Controllers
 				}
 				else
 				{
-					var RegData =  context.Registrations.ToList();
+					var RegData = context.Registrations.ToList();
 					//RegistrationList Rlist = new RegistrationList();
 					List<RegistrationList> RegList = new List<RegistrationList>();
 					if (RegData.Count > 0)
@@ -108,20 +104,20 @@ namespace TimePass.Controllers
 								UserId = item.UserId,
 								Name = item.Name,
 								Mobile = item.Mobile,
-								Address	 = item.Address,
-								Photo	 = item.Photo,
+								Address = item.Address,
+								Photo = item.Photo,
 								Username = item.Username,
 								Password = item.Password,
 								CreatedDate = item.CreatedDate,
 								Coins = item.Coins
-								 
+
 							};
 							RegList.Add(Rlist);
 
 						}
 
 					}
-					 
+
 
 					return View(RegList);
 				}
@@ -150,10 +146,10 @@ namespace TimePass.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Registation(int ID)
 		{
-            //ViewData["AType"] = TType;
+			//ViewData["AType"] = TType;
 
-            string key = "UserName";
-            var cookieValue = Request.Cookies[key];
+			string key = "UserName";
+			var cookieValue = Request.Cookies[key];
 			if (cookieValue != null)
 			{
 				ViewData["ID"] = ID;
@@ -205,15 +201,15 @@ namespace TimePass.Controllers
 				}
 				return View();
 			}
-            else
-            { return RedirectToAction("Index", "Admin"); }
-        }
+			else
+			{ return RedirectToAction("Index", "Admin"); }
+		}
 
 		[HttpPost]
 		public async Task<IActionResult> Registation(RegistrationList registration)
 		{
 
-			 
+
 			var RegUpdate = await context.Registrations.FindAsync(((int)registration.UserId));
 			if (RegUpdate != null)
 			{
@@ -223,7 +219,7 @@ namespace TimePass.Controllers
 				RegUpdate.Address = registration.Address;
 				RegUpdate.Username = registration.Username;
 				RegUpdate.Password = registration.Password;
-				if(RegUpdate.Coins==null)
+				if (RegUpdate.Coins == null)
 				{
 					RegUpdate.Coins = 0;
 				}
@@ -231,14 +227,14 @@ namespace TimePass.Controllers
 				{
 					registration.Coins = 0;
 				}
-				RegUpdate.Coins = RegUpdate.Coins+ registration.Coins;
+				RegUpdate.Coins = RegUpdate.Coins + registration.Coins;
 				TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
 				DateTime indianTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, INDIAN_ZONE);
 				var AddTrans = new Transaction()
 				{
 					Userid = registration.UserId,
 					Coins = registration.Coins,
-					TTime= indianTime
+					TTime = indianTime
 				};
 
 				await context.Transactions.AddAsync(AddTrans);
@@ -295,49 +291,49 @@ namespace TimePass.Controllers
 						await context.SaveChangesAsync();
 					}
 					else
-					{ 
-					var AddData = new Registration()
 					{
+						var AddData = new Registration()
+						{
 
-						Name = registration.Name,
-						Mobile = registration.Mobile,
+							Name = registration.Name,
+							Mobile = registration.Mobile,
 
-						Address = registration.Address,
-						Username = registration.Username,
-						Password = registration.Password,
-						Coins = registration.Coins,
+							Address = registration.Address,
+							Username = registration.Username,
+							Password = registration.Password,
+							Coins = registration.Coins,
 
-						CreatedDate = DateTime.Now,
-					};
+							CreatedDate = DateTime.Now,
+						};
 						await context.Registrations.AddAsync(AddData);
 						await context.SaveChangesAsync();
 					}
-					
+
 					TempData["JavaScriptFunction"] = string.Format("Success();");
-					 
+
 
 				}
 			}
 			return RedirectToAction("RegistrationList");
 
 		}
-        public IActionResult logout()
-        {
-            string key = "UserName";
-            string value = string.Empty;
-            CookieOptions options = new CookieOptions
-            {
-                Expires = DateTime.Now.AddDays(-1)
-            };
-            Response.Cookies.Append(key, value, options);
-            return RedirectToAction("Index", "Admin");
-        }
+		public IActionResult logout()
+		{
+			string key = "UserName";
+			string value = string.Empty;
+			CookieOptions options = new CookieOptions
+			{
+				Expires = DateTime.Now.AddDays(-1)
+			};
+			Response.Cookies.Append(key, value, options);
+			return RedirectToAction("Index", "Admin");
+		}
 		public IActionResult Transaction(int id)
 		{
 
-			var data = context.Transactions.Where(x => x.Userid == id).OrderByDescending(x=>x.TTime).ToList();
-			List<TransactionModel > transactionModels = new List<TransactionModel>();
-		 
+			var data = context.Transactions.Where(x => x.Userid == id).OrderByDescending(x => x.TTime).ToList();
+			List<TransactionModel> transactionModels = new List<TransactionModel>();
+
 			if (data.Count > 0)
 			{
 				foreach (var item in data)
@@ -345,8 +341,8 @@ namespace TimePass.Controllers
 					var Rlist = new TransactionModel()
 					{
 						Coins = item.Coins,
-						TTime = item.TTime ,
-						Userid= item.Userid,
+						TTime = item.TTime,
+						Userid = item.Userid,
 
 					};
 					transactionModels.Add(Rlist);
@@ -357,5 +353,5 @@ namespace TimePass.Controllers
 
 			return View(transactionModels);
 		}
-    }
+	}
 }
