@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.title</title>
+	<meta charset="UTF-8">
+
+
+
+	<meta name="description" content="Time Pass">
+	<meta name="author" content="Rohatas Transport.in">
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<!-- Web Fonts  -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600,800,900|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+	<!-- Vendor CSS -->
+	<link href="/admin/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+	<link rel="stylesheet" href="/admin/vendor/animate/animate.css">
+
+	<link rel="stylesheet" href="/admin/vendor/font-awesome/css/all.min.css" />
+	<link rel="stylesheet" href="/admin/vendor/magnific-popup/magnific-popup.css" />
+	<link rel="stylesheet" href="/admin/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+
+	<!-- Specific Page Vendor CSS -->
+	<link rel="stylesheet" href="/admin/vendor/jquery-ui/jquery-ui.css" />
+	<link rel="stylesheet" href="/admin/vendor/jquery-ui/jquery-ui.theme.css" />
+	<link rel="stylesheet" href="/admin/vendor/bootstrap-multiselect/css/bootstrap-multiselect.css" />
+	<link rel="stylesheet" href="/admin/vendor/morris/morris.css" />
+	<!-- Specific Page Vendor CSS -->
+	<link rel="stylesheet" href="/admin/vendor/select2/css/select2.css" />
+	<link rel="stylesheet" href="/admin/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+	<link rel="stylesheet" href="/admin/vendor/pnotify/pnotify.custom.css" />
+	<link rel="stylesheet" href="/admin/vendor/datatables/media/css/dataTables.bootstrap4.css" />
+
+	<!--(remove-empty-lines-end)-->
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="/admin/css/theme.css" />
+
+
+	<!--(remove-empty-lines-end)-->
+	<!-- Theme Custom CSS -->
+	<link rel="stylesheet" href="/admin/css/custom.css">
+
+	<!-- Head Libs -->
+	<script src="/admin/vendor/modernizr/modernizr.js"></script>
+	<script src="/admin/master/style-switcher/style.switcher.localstorage.js"></script>
+
+	<script src="/js/site.js"></script>
+
+	<script type="text/javascript" language="javascript">
+		function Success() {
+			new PNotify({
+				title: 'Success',
+				text: 'Data has been saved.',
+				type: 'success'
+			});
+		};
+
+		function Fail() {
+			new PNotify({
+				title: 'Fail',
+				text: 'Data failed',
+				type: 'error'
+			});
+		};
+		function Delete() {
+			new PNotify({
+				title: 'Delete',
+				text: 'Data deleted',
+				type: 'error'
+			});
+		};
+		function Update() {
+			new PNotify({
+				title: 'Update',
+				text: 'Data has been updated',
+				type: 'success'
+			});
+		};
+	</script>
+</head>
+<body onload=" return ;">
+	<div>
+		@RenderBody()
+	</div>
+
+	@* <footer  >
+	@RenderSection("footer", true)
+	</footer> *@
+	<script src="/admin/vendor/jquery/jquery.js"></script>
+	<script src="/admin/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+	<script src="/admin/vendor/jquery-cookie/jquery.cookie.js"></script>
+	<script src="/admin/master/style-switcher/style.switcher.js"></script>
+	<script src="/admin/vendor/popper/umd/popper.min.js"></script>
+	<script src="/admin/vendor/bootstrap/js/bootstrap.js"></script>
+	<script src="/admin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="/admin/vendor/common/common.js"></script>
+	<script src="/admin/vendor/nanoscroller/nanoscroller.js"></script>
+	<script src="/admin/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+	<script src="/admin/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+	<script src="/admin/vendor/select2/js/select2.js"></script>
+	<script src="/admin/vendor/pnotify/pnotify.custom.js"></script>
+
+	<!-- Specific Page Vendor -->
+	<script src="/admin/vendor/select2/js/select2.js"></script>
+	<script src="/admin/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="/admin/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+	<script src="/admin/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+	<script src="/admin/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+	<script src="/admin/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+	<script src="/admin/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+	<script src="/admin/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+	<script src="/admin/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+	<script src="/admin/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+
+
+	<!--(remove-empty-lines-end)-->
+	<!-- Theme Base, Components and Settings -->
+	<script src="/admin/js/theme.js"></script>
+
+	<!-- Theme Custom -->
+	<script src="/admin/js/custom.js"></script>
+
+	<!-- Theme Initialization Files -->
+	<script src="/admin/js/theme.init.js"></script>
+	<script src="/admin/js/examples/examples.notifications.js"></script>
+	<!-- Analytics to Track Preview Website -->
+	<script>(function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', '../../../www.google-analytics.com/analytics.js', 'ga'); ga('create', 'UA-42715764-8', 'auto'); ga('send', 'pageview');</script>
+	<!-- Examples -->
+
+
+
+
+
+
+	<script src="/admin/js/examples/examples.advanced.form.js"></script>
+
+	<script src="/admin/js/examples/examples.datatables.tabletools.js"></script>
+	<script src="/admin/js/examples/examples.modals.js"></script>
+
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,239 @@
+﻿@model TimePass.Models.RegistrationList
+@{
+
+	ViewBag.Title =  " Registation";
+
+ 
+}
+<section class="body">
+
+	<!-- start: header -->
+	<header class="header">
+		@* <uc1:AdminHeader ID="AdminHeader1" runat="server" /> *@
+		@Html.Partial("UserHeader")
+		<!-- start: search & user box -->
+		<!-- end: search & user box -->
+	</header>
+	<!-- end: header -->
+
+	<div class="inner-wrapper">
+		<!-- start: sidebar -->
+		@* @{
+		Html.RenderPartial("_AdminMenu");
+		} *@
+		@Html.Partial("AdminMenu")
+		<!-- end: sidebar -->
+		<div>
+
+			<!-- Modal Basic -->
+			<!-- Modal Bootstrap -->
+
+		</div>
+
+		<section role="main" class="content-body card-margin">
+
+
+			<!-- start: page -->
+			@* @using (Html.BeginForm("Registation", "Admin", FormMethod.Post)) *@
+			<form method="post" enctype="multipart/form-data" action="Registation">
+
+				<div class="row">
+
+
+					<div class="col-lg-6">
+						<section class="card form-wizard" id="w1">
+							<header class="card-header">
+								<div class="card-actions">
+									<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+									<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+								</div>
+
+								<h2 class="card-title"> </h2>
+							</header>
+
+
+
+							<div class="card-body card-body-nopadding">
+
+								<div class="form-horizontal" novalidate="novalidate">
+									<div>
+										<div id="w1-account" class="tab-pane p-3 ">
+											@* @{
+											var h = "";
+											}
+											@if (ViewData["Ttype"].ToString() == "Direct-Agent Registation")
+											{
+											h = "hidden";
+											} *@
+
+											<div class="form-group row">
+												<label class="col-sm-3 control-label text-sm-right pt-1" for="w1-email"> Name</label>
+												<div class="col-sm-9">
+													<div class="col-lg-12">
+														<div class="input-group">
+															<span class="input-group-prepend">
+																<span class="input-group-text">
+																	<i class="fas fa-user"></i>
+																</span>
+															</span>
+															<input type="tel" asp-for="UserId" hidden maxlength="10" class="form-control" />
+
+															<input type="text" asp-for="Name" class="form-control" />
+
+
+
+														</div>
+														<span asp-validation-for="Name" class="text-danger"></span>
+													</div>
+												</div>
+											</div>
+
+
+											<div class="form-group row">
+												<label class="col-sm-3 control-label text-sm-right pt-1" for="w1-username">Mobile No.</label>
+												<div class="col-sm-9">
+
+													<div class="col-lg-12">
+														<div class="input-group">
+															<span class="input-group-prepend">
+																<span class="input-group-text">
+																	<i class="fas fa-phone"></i>
+																</span>
+															</span>
+															<input type="text" asp-for="Mobile" class="form-control" />
+
+
+														</div>
+														<span asp-validation-for="Mobile" class="text-danger"></span>
+													</div>
+												</div>
+											</div>.
+
+
+
+
+
+											<div class="form-group row">
+												<label class="col-sm-3 control-label text-sm-right pt-1" for="w1-email">  Address</label>
+												<div class="col-sm-9">
+													<div class="col-lg-12">
+														<div class="input-group">
+															<span class="input-group-prepend">
+																<span class="input-group-text">
+																	<i class="fas fa-location-dot"></i>
+																</span>
+															</span>
+															<textarea rows="3" asp-for=" Address" class="form-control" data-plugin-textarea-autosize></textarea>
+
+
+														</div>
+													</div>
+												</div>
+											</div>
+								 
+											<div class="form-group row">
+												<label class="col-sm-3 control-label text-sm-right pt-1" for="w1-email">UserName</label>
+												<div class="col-sm-9">
+													<div class="col-lg-12">
+														<div class="input-group">
+															<span class="input-group-prepend">
+																<span class="input-group-text">
+																	<i class="fas fa-user"></i>
+																</span>
+															</span>
+															<input type="text" asp-for="Username" class="form-control" />
+
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-3 control-label text-sm-right pt-1" for="w1-last-name">Password</label>
+												<div class="col-sm-9">
+
+													<div class="col-lg-12">
+														<div class="input-group">
+															<span class="input-group-prepend">
+																<span class="input-group-text">
+																	<i class="fas fa-lock"></i>
+																</span>
+															</span>
+															<input type="text" asp-for="Password" class="form-control" />
+
+														</div>
+													</div>
+
+
+
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-3 control-label text-sm-right pt-1" for="w1-last-name">Add Coins</label>
+												<div class="col-sm-9">
+
+													<div class="col-lg-12">
+														<div class="input-group">
+															<span class="input-group-prepend">
+																<span class="input-group-text">
+																	<i class="fas fa-coin"></i>
+																</span>
+															</span>
+															<input type="text" asp-for="Coins" class="form-control" />
+
+														</div>
+													</div>
+
+
+
+												</div>
+											</div>
+											<div class="form-group row" hidden>
+												@* <label class="col-lg-3 control-label text-lg-right pt-2">Photo Upload</label> *@
+												<div class="col-lg-9">
+													<div class="input-group mb-12">
+														<label class="input-group-text">Upload Photo</label>
+														<input type="file" class="form-control" asp-for="imgPhoto">
+														@* <span asp-validation-for="Reg.Photo" class="text-danger"></span> *@
+													</div>
+
+
+												</div>
+												<div class="col-lg-3">
+													@if (Model.Photo != null)
+													{
+														<a href="../../Upload/@Model.Photo"><img src="../../Upload/@Model.Photo" width="100" /></a>
+													}
+
+												</div>
+											</div>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+							<div class="card-footer">
+
+								@* <Button ID="Button1" runat="server" Text="Submit"  class="btn btn-warning mt-2 float-right" /> *@
+
+								<input type="submit" class="btn btn-warning mt-2 float-right" value="Submit" />
+
+
+							</div>
+
+						</section>
+					</div>
+				 
+
+				</div>
+			</form>
+			<!-- end: page -->
+		</section>
+		@section Scripts
+  {
+			<partial name="_ValidationScriptsPartial" />
+		}
+	</div>
+
+
+</section>

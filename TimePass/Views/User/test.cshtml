@@ -1,0 +1,93 @@
+﻿@model TimePass.Models.UserDashboard
+@{
+    ViewBag.Title = "Time Pass";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+ 
+
+<div  >
+
+    
+
+    
+    
+    <form method="post" action="~/User/Index">
+
+
+
+        <div class="content py-2" style="color:blue">
+            <p id="demo" style="text-align:center; font-size:15px;color:red;">  </p>
+
+            <input type="radio" class="btn-check" asp-for="PlayNumber" value="0" id="option0" autocomplete="off">
+            <label class="btn" for="option0">0</label>
+
+            <input type="radio" class="btn-check" asp-for="PlayNumber" value="1" id="option1" autocomplete="off">
+            <label class="btn" for="option1">1</label>
+
+            <input type="radio" class="btn-check" asp-for="PlayNumber" value="2" id="option2" autocomplete="off">
+            <label class="btn" for="option2">2</label>
+
+            <input type="radio" class="btn-check" asp-for="PlayNumber" value="3" id="option3" autocomplete="off">
+            <label class="btn" for="option3">3</label>
+            <input type="radio" class="btn-check" asp-for="PlayNumber" value="4" id="option4" autocomplete="off">
+            <label class="btn" for="option4">4</label>
+
+            <input type="radio" class="btn-check" asp-for="PlayNumber" value="5" id="option5" autocomplete="off">
+            <label class="btn" for="option5">5</label>
+
+            <input type="radio" class="btn-check" asp-for="PlayNumber" value="6" id="option6" autocomplete="off">
+            <label class="btn" for="option6">6</label>
+
+            <input type="radio" class="btn-check" asp-for="PlayNumber" value="7" id="option7" autocomplete="off">
+            <label class="btn" for="option7">7</label>
+
+            <input type="radio" class="btn-check" asp-for="PlayNumber" value="8" id="option8" autocomplete="off">
+            <label class="btn" for="option8">8</label>
+
+            <input type="radio" class="btn-check" asp-for="PlayNumber" value="9" id="option9" autocomplete="off">
+            <label class="btn" for="option9">9</label>
+
+            <br />
+            <label>Coins (between 10 and 1000):</label>
+            <input type="number" asp-for="PlayCoins" class="form-control rounded-xs" placeholder="Enter Coins (between 10 and 1000)">
+            <br />
+            <span asp-validation-for="PlayCoins" class="text-danger"></span>
+            <input type="text" asp-for="NextPlayTime" id="pTime1" name="pTime1" class="form-control rounded-xs" style="display:none" />
+            <input type="text" asp-for="PlayTime" id="timeplay" class="form-control rounded-xs" style="display:none" />
+            <input type="text" asp-for="Id" id="playid" class="form-control rounded-xs" style="display:none" />
+
+
+            @*  <a href="index.html" class="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4">submit</a> *@
+            <center>
+                @*  @if (Model.PlayResult.Count<=0)
+                {
+                <input type="submit" value="submit" disabled class="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4" />
+                }
+                else
+                {*@
+                <input type="submit" value="submit" id="submitbutton" class="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4" />
+                @* } *@
+
+
+            </center>
+        </div>
+    </form>
+
+    
+
+    
+
+
+</div>
+
+@section Scripts {
+    
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+
+

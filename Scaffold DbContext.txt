@@ -1,0 +1,8 @@
+Scaffold-DbContext "Server=P3NWPLSK12SQL-v12.shr.prod.phx3.secureserver.net;Database=RavindraInfra;user id=RavindraInfra;password=Ravindra#Infra321@; TrustServerCertificate=True" Microsoft.EntityFrameworkCore.sqlserver -OutputDir DBData
+
+Scaffold-DbContext "Server=P3NWPLSK12SQL-v12.shr.prod.phx3.secureserver.net;Database=RavindraInfra;user id=RavindraInfra;password=Ravindra#Infra321@; TrustServerCertificate=True" Microsoft.EntityFrameworkCore.sqlserver -OutputDir DBData -Force
+
+
+
+
+Scaffold-DbContext "Server=P3NWPLSK12SQL-v12.shr.prod.phx3.secureserver.net;Database=_TimePass;user id=_TimePass;password=TimePass@123@#; TrustServerCertificate=True" Microsoft.EntityFrameworkCore.sqlserver -OutputDir DBData -Force

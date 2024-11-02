@@ -1,0 +1,204 @@
+﻿@model TimePass.Models.ResultModel
+@{
+	ViewBag.Title = "Operator Dashboard | Time Pass";
+
+}
+<section class="body">
+
+	<!-- start: header -->
+	<header class="header">
+		@* <uc1:AdminHeader ID="AdminHeader1" runat="server" /> *@
+		@Html.Partial("UserHeader")
+		<!-- start: search & user box -->
+		<!-- end: search & user box -->
+	</header>
+	<!-- end: header -->
+
+	<div class="inner-wrapper">
+		<!-- start: sidebar -->
+		@* @{
+		Html.RenderPartial("_AdminMenu");
+		} *@
+		@Html.Partial("UserMenu")
+		<!-- end: sidebar -->
+
+		<section role="main" class="content-body card-margin">
+
+
+			<!-- start: page -->
+
+			
+			<div class="row">
+
+				<div class="col-lg-9">
+					<section class="card form-wizard" id="w1">
+						<header class="card-header">
+							<div class="card-actions">
+								<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+								<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+							</div>
+
+							<h2 class="card-title">Today Result</h2>
+						</header>
+						<div class="card-body card-body-nopadding">
+							<div id="w1-account" class="tab-pane p-3 ">
+								<div>
+									<p id="demo" style="text-align:center; font-size:15px;color:red;">  </p>
+									<input type="text" asp-for="NextPlayTime" id="pTime1" class="form-control rounded-xs" />
+									<input type="text" asp-for="Id" id="playid" class="form-control rounded-xs" style="display:none" />
+									<table cellspacing="0" rules="all" class="table table-bordered table-striped mb-0" border="1" style="border-collapse:collapse;">
+										<thead>
+											<tr class="headerStyle">
+												<th align="center" scope="col">Play Time</th>
+												<th align="center" scope="col">Result Number</th>
+												<th align="center" scope="col">Winner</th>
+
+												<th align="center" scope="col" style="width:50px;">Update</th>
+											</tr>
+										</thead>
+										<tbody>
+											<form method="post" id="result" >
+											@if (Model != null && Model.ResultsList.Any())
+											{
+												@* @Model.stateLists = new  *@
+
+												@foreach (var data in Model.ResultsList)
+												{
+													var moid = "modal" + data.Id;
+													<tr class="rowStyle">
+														<td align="center" style="white-space:nowrap;  "><b>@data.ResultTime.Value.ToString("hh:mm tt")</b></td>
+														<td align="center">
+															@data.ResultNumber
+														</td>
+
+														<td align="center">
+
+														@data.ResultWinner
+														</td>
+
+														<td align="center">
+															@if (data.ResultNumber == null)
+															{
+																@* <a asp-controller="Operator" asp-action="Result" class="btn btn-warning mt-2" asp-route-id="@data.Id">Update</a>
+													<button asp-route-id="@data.Id" type="submit" class="btn btn-warning mt-2" name="action">Update</button> *@
+																@* <a class="btn btn-warning mt-2 modal-basic" href="#@moid">Update</a> *@
+																<a asp-controller="Operator" asp-action="UpdateResult" asp-route-id="@data.Id" class="btn btn-warning mt-2">Update</a>
+
+															}
+															else
+															{
+																@* <button asp-route-id="@data.Id" type="submit" class="btn btn-warning mt-2" name="action">Update</button> *@
+															}
+
+														</td>
+													</tr>
+													
+													<div id="@moid" class="modal-block mfp-hide">
+														<section class="card">
+															<header class="card-header">
+																<h2 class="card-title">Update Result of @data.ResultTime.Value.ToString("hh:mm tt")</h2>
+															</header>
+															<div class="card-body">
+																<div class="modal-wrapper">
+																	<div class="modal-text">
+																			<input type="text" asp-for="@data.Id" id="Rid" />
+																		<label >Result Number</label>
+																		<input type="text" class="form-control" id="ResultNumber" asp-for="ResultNumber" /><br />
+																		<label>Result Winner</label>
+																		<input type="text" class="form-control" asp-for="ResultWinner" />
+																	</div>
+																</div>
+															</div>
+															<footer class="card-footer">
+																<div class="row">
+																	<div class="col-md-12 text-right">
+																			@* <a asp-controller="Operator" asp-action="ResultEdit" class="btn btn-primary" asp-route-id="@data.Id">Submit</a> *@
+																		<button type="submit" class="btn btn-warning mt-2" onclick="form_submit()">Update</button>
+
+																<button class="btn btn-default modal-dismiss">Cancel</button>
+																	</div>
+																</div>
+															</footer>
+														</section>
+													</div>
+												}
+											}
+
+											</form>
+										</tbody>
+										<tfoot>
+										</tfoot>
+									</table>
+
+								</div>
+							</div>
+						</div>
+
+					</section>
+				</div>
+			</div>
+			
+			<!-- end: page -->
+		</section>
+		@section Scripts
+        {
+            
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+			<script>
+				// Set the date we're counting down to
+
+				var a = document.getElementById("pTime1").value
+			 // alert(a);
+
+
+				if (a == '') {
+					document.getElementById("demo").innerHTML = "Next Result in morning";
+				}
+				else {
+					var countDownDate = new Date(a).getTime();
+					// Update the count down every 1 second
+					var x = setInterval(function () {
+
+						// Get today's date and time
+						var now = new Date().getTime();
+
+						// Find the distance between now and the count down date
+						var distance = countDownDate - now;
+
+						// Time calculations for days, hours, minutes and seconds
+						var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+						var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+						var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+						var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+						// Output the result in an element with id="demo"
+						document.getElementById("demo").innerHTML = "Next Result in "
+							+ minutes + "m " + seconds + "s ";
+						// if (hours == 0) {
+						//     document.getElementById("demo").innerHTML = Next Result in +" minutes + "m " + seconds + "s ";
+						// }
+						// else {
+						//     document.getElementById("demo").innerHTML = Next Result in + hours + "h " + minutes + "m " + seconds + "s ";
+						// }
+						if (minutes == 0) {
+
+							document.getElementById('submitbutton').disabled = true;
+						}
+
+						// If the count down is over, write some text
+						if (distance < 0) {
+							clearInterval(x);
+							var id = document.getElementById("playid").value
+							location.replace("/Operator/updateResultUser/"+id)
+
+						}
+					}, 1000);
+				}
+			</script>
+			<partial name="_ValidationScriptsPartial" />
+
+		}
+	</div>
+
+
+</section>

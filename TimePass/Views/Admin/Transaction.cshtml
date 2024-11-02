@@ -1,0 +1,119 @@
+﻿ 
+@model List<TimePass.Models.TransactionModel>
+
+<section class="body">
+
+	<!-- start: header -->
+	<header class="header">
+		@* <uc1:AdminHeader ID="AdminHeader1" runat="server" /> *@
+		@Html.Partial("UserHeader")
+		<!-- start: search & user box -->
+		<!-- end: search & user box -->
+	</header>
+	<!-- end: header -->
+
+	<div class="inner-wrapper">
+		<!-- start: sidebar -->
+		@* @{
+		Html.RenderPartial("_AdminMenu");
+		} *@
+		@Html.Partial("AdminMenu")
+		<!-- end: sidebar -->
+		<div>
+
+			<!-- Modal Basic -->
+			<!-- Modal Bootstrap -->
+
+		</div>
+
+		<section role="main" class="content-body card-margin">
+
+
+			<!-- start: page -->
+
+
+			<div class="row">
+
+				<div class="col-lg-6">
+					<section class="card form-wizard" id="w1">
+						<header class="card-header">
+							<div class="card-actions">
+								<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+								<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+							</div>
+							@* @foreach (var RType in Model) *@
+
+							<h2 class="card-title">  Transaction List  </h2>
+
+
+						</header>
+						<div class="card-body card-body-nopadding">
+							<ul class="nav nav-pills nav-pills-primary">
+								&nbsp;
+								@* <li class="nav-item">
+
+									 
+									<a asp-controller="Admin" asp-action="Registation"     class="nav-link active">Add New</a>
+
+								</li> *@
+
+
+
+							</ul>
+							<div id="w1-account" class="tab-pane p-3 ">
+								<div>
+									<table cellspacing="0" rules="all" class="table table-bordered table-striped mb-0" border="1" id="grd1" style="border-collapse:collapse;">
+										<thead>
+											<tr class="headerStyle">
+												<th scope="col">Sr.</th>
+												 
+												
+												<th scope="col">Coins</th>
+												<th scope="col">Date</th>
+											 
+
+												 
+											</tr>
+										</thead>
+										<tbody>
+											@if (Model != null && Model.Any())
+											{
+												@* @Model.stateLists = new  *@
+												var i = 0;
+												@foreach (var Reg in Model)
+												{
+													var moid = "modal" + Reg.Id;
+													i = i + 1;
+													var ActiveColor = "";
+													if(Reg.Coins<0)
+													{
+														ActiveColor = "orange";
+													}
+													<tr class="rowStyle" style="background-color:@ActiveColor">
+														<td style="white-space:nowrap;">@i</td> 
+														<td style="white-space:nowrap;">@Reg.Coins</td>
+														<td style="white-space:nowrap;">@Reg.TTime</td>
+
+														 
+													</tr>
+												 
+												}
+
+											}
+										</tbody>
+										<tfoot>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+
+					</section>
+				</div>
+			</div>
+			<!-- end: page -->
+		</section>
+	</div>
+
+
+</section>

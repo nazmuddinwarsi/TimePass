@@ -1,0 +1,113 @@
+﻿<aside id="sidebar-left" class="sidebar-left">
+
+	<div class="sidebar-header">
+		<div class="sidebar-title">
+			Navigation
+		</div>
+		<div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+			<i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+		</div>
+	</div>
+
+	<div class="nano">
+		<div class="nano-content">
+			<nav id="menu" class="nav-main" role="navigation">
+
+				<ul class="nav nav-main">
+					<li>
+						<a class="nav-link" href="~/Operator/Dashboard">
+							<i class="fas fa-anchor" aria-hidden="true"></i>
+							<span>Dashboard</span>
+						</a>
+					</li>
+
+					<li>
+						<a class="nav-link" href="~/Operator/Result">
+							<i class="fas fa-list-alt" aria-hidden="true"></i>
+							<span>Result</span>
+						</a>
+					</li>
+					<li>
+						<a class="nav-link" href="/Operator/ServerDown/">
+							<i class="fas fa-home" aria-hidden="true"></i>
+							<span>Server Down</span>
+						</a>
+					</li>
+				 
+				 
+					@* <li>
+						<a class="nav-link" href="Dashboard">
+							<i class="fas fa-rupee-sign" aria-hidden="true"></i>
+							<span>Received Payment List</span>
+						</a>
+					</li> *@
+					<li>
+						<a class="nav-link" href="~/User/ChangePassword">
+							<i class="fas fa-lock" aria-hidden="true"></i>
+							<span>Change Password</span>
+						</a>
+					</li>
+					<li>
+						<a class="nav-link" href="/Operator/logout/">
+							<i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+							<span>Logout</span>
+						</a>
+					</li>
+					 
+					
+
+
+				 
+
+					@* <li class="nav-parent">
+					<a class="nav-link" href="#">
+					<i class="fas fa-copy" aria-hidden="true"></i>
+					<span>Reports</span>
+					</a>
+					<ul class="nav nav-children">
+
+					<li>
+					<a class="nav-link" href="BiltyList.aspx?Deleted=53">
+					Deleted Bilty List
+					</a>
+					</li>
+
+					<li>
+					<a class="nav-link" href="InvoiceList.aspx?Deleted=53">
+					Deleted  Bill Invoice List
+					</a>
+					</li>
+
+					</ul>
+					</li> *@
+
+
+
+
+
+
+				</ul>
+			</nav>
+
+
+		</div>
+
+		<script>
+			// Maintain Scroll Position
+			if (typeof localStorage !== 'undefined') {
+				if (localStorage.getItem('sidebar-left-position') !== null) {
+					var initialPosition = localStorage.getItem('sidebar-left-position'),
+						sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+
+					sidebarLeft.scrollTop = initialPosition;
+				}
+			}
+		</script>
+
+
+	</div>
+
+</aside>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@

@@ -1,0 +1,97 @@
+﻿@model TimePass.Models.UserLogin;
+@{
+	ViewData["Title"] = "Login Page";
+
+}
+
+<section class="body-sign">
+	<div class="center-sign">
+		<a href="#/" class="logo float-left">
+			@* <img src="../assets/images/logo.png" height="100" alt="Rohatas Transport" />  *@
+		</a>
+		@* 	<asp:Panel ID="pnlMessage" runat="server" Visible="false">
+		<div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+		<%=Message %>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+		</asp:Panel> *@
+		<div class="panel card-sign">
+			<div class="card-title-sign mt-3 text-right">
+				<h2 class="title text-uppercase font-weight-bold m-0"><i class="fas fa-user mr-1"></i>Admin Sign In</h2>
+			</div>
+			<div class="card-body">
+				@using (Html.BeginForm("Index", "Admin", FormMethod.Post))
+				{
+
+					if (ViewBag.Status == 0)
+					{
+						<div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+							Username or Password is invalid
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					}
+
+					<div>
+
+						<div class="form-group mb-3">
+							<label>Username</label>
+							<div class="input-group">
+								@Html.TextBoxFor(m => m.Username, new { @class = "form-control form-control-lg" })
+
+
+
+								<span class="input-group-append">
+									<span class="input-group-text">
+										<i class="fas fa-user"></i>
+									</span>
+								</span>
+							</div>
+						</div>
+
+						<div class="form-group mb-3">
+							<div class="clearfix">
+								<label class="float-left">Password</label>
+
+							</div>
+							<div class="input-group">
+								@Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg" })
+
+
+
+								<span class="input-group-append">
+									<span class="input-group-text">
+										<i class="fas fa-lock"></i>
+									</span>
+								</span>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-8">
+								<div class="checkbox-custom checkbox-default" hidden>
+									<input id="RememberMe" name="rememberme" type="checkbox" />
+									<label for="RememberMe">Remember Me</label>
+								</div>
+							</div>
+							<div class="col-sm-4 text-right">
+								<input type="submit" value="submit" class="btn btn-warning mt-2" />
+
+
+
+							</div>
+						</div>
+
+
+
+					</div>
+				}
+			</div>
+		</div>
+
+
+	</div>
+</section>
